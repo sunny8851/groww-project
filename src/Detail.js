@@ -10,43 +10,37 @@ const Detail = (itemsPerPage) => {
   const [num, setnum] = useState(10);
   const [datas, setdata] = useState([]);
   const navigate = useNavigate();
-  const options = ["DELHI", "MUMBAI", "DEHRADUN", "BENGALURU", "PUNE"];
-  const [value, setvalue] = useState(options[0]);
-  const [sdata, setsdata] = useState([]);
+  const City = ["DELHI", "MUMBAI", "DEHRADUN", "BENGALURU", "PUNE"];
+  const [SelectedCity, setSelectedCity] = useState(City[0]);
+  const [SearchData, setSearchData] = useState([]);
   const [local, setlocal] = useState(0);
   const [isLoading, setisLoading] = useState(true);
-  const options1 = ["Bank Name", "IFSC", "Branch"];
-  const [value1, setvalue1] = useState(options1[0]);
-  localStorage.setItem("city", JSON.stringify(value));
+  const DetailDropdown = ["Bank Name", "IFSC", "Branch"];
+  const [SelectedDetailDropdown, setSelectedDetailDropdown] = useState(
+    DetailDropdown[0]
+  );
+  localStorage.setItem("city", JSON.stringify(SelectedCity));
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem(value.toString()));
+    const data = JSON.parse(localStorage.getItem(SelectedCity.toString()));
     setisLoading(true);
     if (!!data) {
       setdata(data);
-      setsdata(data);
+      setSearchData(data);
       setisLoading(false);
     } else {
-      fetch(`https://vast-shore-74260.herokuapp.com/banks?city=${value}`)
+      fetch(`https://vast-shore-74260.herokuapp.com/banks?city=${SelectedCity}`)
         .then((response) => response.json())
         .then((json) => {
-          localStorage.setItem(value.toString(), JSON.stringify(json));
+          localStorage.setItem(SelectedCity.toString(), JSON.stringify(json));
           setdata(json);
-          setsdata(json);
+          setSearchData(json);
         })
         .then(() => setisLoading(false));
     }
-  }, [value, local]);
+  }, [SelectedCity, local]);
   useEffect(() => {
     setlocal(1);
   }, []);
-  // useEffect(() => {
-  //   console.log(sdata);
-  //   const compare = sdata.sort((a, b) => {
-  //     a.bank_name.localeCompare(b.bank_name);
-  //   });
-  //   setsdata(compare);
-  //   console.log(sdata);
-  // }, [value1, num]);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -60,26 +54,27 @@ const Detail = (itemsPerPage) => {
   useEffect(() => {
     const endOffset = itemOffset + num;
     {
-      sdata && setCurrentItems(sdata.slice(itemOffset, endOffset));
+      SearchData && setCurrentItems(SearchData.slice(itemOffset, endOffset));
     }
     {
-      num > 0 && sdata && setPageCount(Math.ceil(sdata.length / num));
+      num > 0 && SearchData && setPageCount(Math.ceil(SearchData.length / num));
     }
-  }, [itemOffset, num, sdata]);
+  }, [itemOffset, num, SearchData]);
+  console.log(SelectedCity);
   useEffect(() => {
-    if (value1 === options1[1]) {
-      setsdata(
+    if (SelectedDetailDropdown === DetailDropdown[1]) {
+      setSearchData(
         datas.filter((el) => el.ifsc.toLowerCase().includes(name.toLowerCase()))
       );
-    } else if (value1 === options1[0]) {
-      setsdata(
+    } else if (SelectedDetailDropdown === DetailDropdown[0]) {
+      setSearchData(
         datas.filter((el) =>
           el.bank_name.toLowerCase().includes(name.toLowerCase())
         )
       );
-    } else if (value1 === options1[2]) {
+    } else if (SelectedDetailDropdown === DetailDropdown[2]) {
       {
-        setsdata(
+        setSearchData(
           datas.filter((el) =>
             el.branch.toLowerCase().includes(name.toLowerCase())
           )
@@ -87,9 +82,9 @@ const Detail = (itemsPerPage) => {
       }
     }
   }, [name]);
-  console.log(sdata);
+  console.log(SearchData);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * num) % sdata.length;
+    const newOffset = (event.selected * num) % SearchData.length;
     setItemOffset(newOffset);
   };
 
@@ -132,15 +127,15 @@ const Detail = (itemsPerPage) => {
           <div className=" border-2 items-center  mr-2 cursor-pointer">
             <select
               className="w-36 h-9 items-center cursor-pointer "
-              defaultValue={value}
+              defaultValue={SelectedCity}
               onChange={(e) => {
-                setvalue(e.target.value);
+                setSelectedCity(e.target.value);
                 setisLoading(true);
-                localStorage.setItem("city", JSON.stringify(value));
+                localStorage.setItem("city", JSON.stringify(SelectedCity));
               }}
             >
-              {options.map((option) => (
-                <option className=" " value={option}>
+              {City.map((option) => (
+                <option className=" " SelectedCity={option}>
                   {option}
                 </option>
               ))}
@@ -149,11 +144,11 @@ const Detail = (itemsPerPage) => {
           <div className="border-2 items-center cursor-pointer ">
             <select
               className="w-36 h-9 items-center cursor-pointer  "
-              defaultValue={value1}
-              onChange={(e) => setvalue1(e.target.value)}
+              defaultValue={SelectedDetailDropdown}
+              onChange={(e) => setSelectedDetailDropdown(e.target.value)}
             >
-              {options1.map((option) => (
-                <option className=" " value1={option}>
+              {DetailDropdown.map((option) => (
+                <option className=" " SelectedDetailDropdown={option}>
                   {option}
                 </option>
               ))}
