@@ -39,43 +39,47 @@ const Child = () => {
       {datas && (
         <div className="container w-2/3 border-2 border-stone-400 h-fit">
           <div className="row ">
-            <p style={{ minWidth: "120px" }}>Bank Name:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>Bank Name:</p>
             <p>{datas.bank_name}</p>
           </div>
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank Id:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>Bank Id:</p>
             <p>{datas.bank_id}</p>
           </div>
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank IFSC:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>Bank IFSC:</p>
             <p>{datas.ifsc}</p>
           </div>
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank Branch:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>Bank Branch:</p>
             <p>{datas.branch}</p>
           </div>
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank District:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>
+              Bank District:
+            </p>
             <p>{datas.district}</p>
           </div>
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank City:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>Bank City:</p>
             <p>{datas.city}</p>
           </div>
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank State:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>Bank State:</p>
             <p>{datas.state}</p>
           </div>
 
           <hr />
           <div className="row">
-            <p style={{ minWidth: "120px" }}>Bank Address:</p>
+            <p style={{ minWidth: "120px", fontWeight: "600" }}>
+              Bank Address:
+            </p>
             <p>{datas.address}</p>
           </div>
           <hr />

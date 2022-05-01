@@ -59,7 +59,7 @@ const Favorites = ({ itemsPerPage }) => {
               boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.5)",
             }}
           >
-            <th>Bank</th>
+            <th className="pl-2">Bank</th>
             <th className="pl-7">IFSC</th>
             <th className="pl-7">Branch</th>
             <th className="pl-5">Bank_Id</th>
@@ -84,7 +84,7 @@ const Favorites = ({ itemsPerPage }) => {
             currentItems.map((m) => (
               <tr
                 style={{
-                  // backgroundColor: "#f4f6fb",
+                  backgroundColor: "#f4f6fb",
                   fontFamily: "Mukta,sans-serif",
                   fontSize: "13px",
                 }}
@@ -96,6 +96,7 @@ const Favorites = ({ itemsPerPage }) => {
                     maxWidth: "260px",
                     paddingLeft: "3px",
                     cursor: "pointer",
+                    fontWeight: "600",
                   }}
                 >
                   {m.bank_name}

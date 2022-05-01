@@ -181,7 +181,7 @@ const Detail = (itemsPerPage) => {
               boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.5)",
             }}
           >
-            <th>Bank</th>
+            <th className="pl-2">Bank</th>
             <th className="pl-7">IFSC</th>
             <th className="pl-7">Branch</th>
             <th className="pl-5">Bank_Id</th>
@@ -217,6 +217,8 @@ const Detail = (itemsPerPage) => {
                     maxWidth: "260px",
                     paddingLeft: "3px",
                     cursor: "pointer",
+                    color: "black",
+                    fontWeight: "600",
                   }}
                 >
                   {m.bank_name}
