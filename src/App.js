@@ -11,12 +11,6 @@ import {
 import Favorites from "./Favorites";
 import { useEffect } from "react";
 function App() {
-  useEffect(() => {
-    const handle = () => {
-      localStorage.clear();
-    };
-    window.addEventListener("beforeunload", handle);
-  }, []);
   return (
     <div className="App">
       <Router>
